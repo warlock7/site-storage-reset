@@ -1,0 +1,38 @@
+{
+  "name": "site-storage-reset",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run build:chrome && pnpm run build:firefox && pnpm run build:safari",
+    "build:chrome": "wxt build -b chrome --mv3",
+    "build:firefox": "wxt build -b firefox --mv3",
+    "build:safari": "wxt build -b safari --mv3",
+    "dev:chrome": "wxt -b chrome --mv3",
+    "dev:firefox": "wxt -b firefox --mv3",
+    "dev:safari": "wxt -b safari --mv3",
+    "package:safari": "pnpm run build:safari && node scripts/package-safari.mjs",
+    "lint": "oxlint --deny-warnings src tests scripts wxt.config.ts",
+    "lint:fix": "oxlint --fix --deny-warnings src tests scripts wxt.config.ts",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "tsrs --noEmit -p tsconfig.json",
+    "test": "pnpm run build && pnpm run typecheck && node --test tests/*.test.ts",
+    "test:browser": "pnpm run build:chrome && pnpm run typecheck && node scripts/test-browser.mjs"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.4",
+    "@types/node": "^24.0.0",
+    "@types/selenium-webdriver": "^4.1.28",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "selenium-webdriver": "^4.39.0",
+    "tsrs": "0.23.0-ts7.1.0-beta",
+    "vite": "^8.3.8",
+    "wxt": "0.21.5"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@10.10.0"
+}

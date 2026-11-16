@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reset site storage</title>
+    <style>
+      body {
+        width: 300px;
+        margin: 0;
+        padding: 16px;
+        box-sizing: border-box;
+        font:
+          14px system-ui,
+          sans-serif;
+        color: #202124;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 12px;
+      }
+      p {
+        line-height: 1.4;
+      }
+      #site {
+        overflow-wrap: anywhere;
+        font-weight: 600;
+      }
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 8px 0;
+        padding: 8px;
+        font: inherit;
+      }
+      button {
+        width: 100%;
+        padding: 9px;
+        border: 0;
+        border-radius: 5px;
+        background: #b42318;
+        color: white;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      #status {
+        min-height: 1.4em;
+        margin-bottom: 0;
+      }
+      .note {
+        color: #555;
+        font-size: 12px;
+      }
+    </style>
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <h1>Reset site storage</h1>
+    <p id="site">Reading current site…</p>
+    <p id="description">
+      Clears cookies, local storage, IndexedDB, session storage and Cache Storage, then reloads this
+      tab.
+    </p>
+    <p class="note" id="scope-warning">
+      Cookies may be cleared across the site's registrable domain and other ports. Storage may
+      affect other containers or tabs. HTTP cache is not cleared.
+    </p>
+    <div id="site-access" hidden>
+      <label for="site-url">Page address (including http:// or https://)</label>
+      <input id="site-url" type="url" placeholder="http://localhost:3003" />
+      <button id="allow-site" type="button">Allow access to this site</button>
+    </div>
+    <button id="clear" type="button" disabled>Clear and reload</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </body>
+</html>
